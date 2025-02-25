@@ -6,7 +6,7 @@
 /*   By: mhasoneh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:44:28 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/02/25 19:06:02 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:08:01 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int		main()
 {
 	write(1, "Hello World!\n", 13);
-	write(1, "counter", 7);
+	write(1, "count", 5);
 	return 0;
 }
