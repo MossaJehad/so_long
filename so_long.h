@@ -6,7 +6,7 @@
 /*   By: mhasoneh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:40:37 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/02/27 17:23:24 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:44:05 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include "minilibx/mlx.h"
 
 typedef struct	s_data {
+	void    *mlx;
+    void    *mlx_win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;

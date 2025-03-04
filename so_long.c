@@ -14,6 +14,7 @@
 
 int	close_window(void *mlx)
 {
+	mlx_destroy_window(mlx);
 	mlx_loop_end(mlx);
 	return (0);
 }
