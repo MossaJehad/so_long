@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-int	close_window(void *mlx)
+int	close_window(void *mlx, void *mlx_win)
 {
-	mlx_destroy_window(mlx);
+	mlx_destroy_window(mlx, mlx_win);
 	mlx_loop_end(mlx);
 	return (0);
 }

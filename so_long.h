@@ -6,7 +6,7 @@
 /*   By: mhasoneh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:40:37 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/02/27 18:44:05 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:23:29 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-int		close_window(void *mlx);
+int	close_window(void *mlx, void *mlx_win);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
