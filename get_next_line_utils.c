@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:20 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 16:57:03 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:27:39 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,27 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	while (src[i] != '\0')
 		i++;
 	return (i);
+}
+
+char	*cleaner(char *line)
+{
+	char	*new_line;
+	char	*ptr;
+	int		len;
+
+	ptr = ft_strchr(line, '\n');
+	if (!ptr)
+	{
+		new_line = NULL;
+		return (ft_free(&line));
+	}
+	else
+		len = (ptr - line) + 1;
+	if (!line[len])
+		return (ft_free(&line));
+	new_line = ft_substr(line, len, ft_strlen(line) - len);
+	ft_free(&line);
+	if (!new_line)
+		return (NULL);
+	return (new_line);
 }

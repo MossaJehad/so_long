@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:43:33 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/09 21:09:42 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:18:19 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ char	*stringconcate(const char *s1, const char *s2, char *string)
 	return (string);
 }
 
-char	*ft_free(char **str)
+char	*ft_free(char **ptr)
 {
-	free(*str);
-	*str = NULL;
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 	return (NULL);
 }
 

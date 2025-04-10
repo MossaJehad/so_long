@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:14:02 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 16:58:27 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:42:44 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_data
 	int		collectibles_collected;
 }				t_data;
 
+char	*read_buffer(int fd, char *buffer, int *byte);
+char	*process_line(char *line, char *buffer);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -98,7 +100,7 @@ void	free_map(char **map);
 void	destroy_images(t_data *data);
 
 void	find_player_position(t_data *data);
-void	init_game_images(t_data *data);
+int		init_game_images(t_data *data);
 int		validate_images(t_data *data);
 
 int		setup_map(t_data *data, char *map_path);
@@ -113,5 +115,9 @@ int		is_exit(t_data *data, int x, int y);
 void	update_player_position(t_data *data, int new_x, int new_y);
 void	find_positions(t_data *data);
 void	check_and_set_pos(t_data *data, int i, int j);
+char	*rbuff(int fd, char *line);
+char	*cleaner(char *line);
+void	check_name(char *name);
+void	make_data(t_data *data);
 
 #endif

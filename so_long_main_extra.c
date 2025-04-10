@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 16:57:50 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:53:29 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,14 @@ int	setup_window(t_data *data)
 		map_width = strlen(data->map[0]);
 	data->mlx = mlx_init();
 	if (!data->mlx)
-	{
-		free_map(data->map);
-		write(2, "Error: Failed to initialize MLX\n", 32);
 		return (0);
-	}
 	data->img_width = 64;
 	data->img_height = 64;
 	data->mlx_win = mlx_new_window(data->mlx, map_width * data->img_width,
 			map_height * data->img_height, "So Long");
-	return (data->mlx_win != NULL);
+	if (data->mlx_win == NULL)
+		return (0);
+	return (1);
 }
 
 void	initialize_game(t_data *data)
@@ -70,10 +68,20 @@ void	initialize_game(t_data *data)
 
 int	handle_window_error(t_data *data)
 {
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free_map(data->map);
-	write(2, "Error: Failed to create window\n", 32);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		data->mlx = NULL;
+	}
+	if (data->map)
+		free_map(data->map);
+	if (data->mlx_win)
+	{
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		data->mlx_win = NULL;
+	}
+	write(2, "Error: Failed in mlx\n", 22);
 	return (1);
 }
 
@@ -81,19 +89,18 @@ int	main(int ac, char *av[])
 {
 	t_data	data;
 
+	make_data(&data);
 	if (ac != 2 || !av[1])
 	{
 		write(2, "Error please choose a map\n", 26);
 		return (0);
 	}
+	check_name(av[1]);
 	if (!setup_map(&data, av[1]))
 		return (1);
 	if (!setup_window(&data))
-		return (1);
-	if (!data.mlx_win)
 		return (handle_window_error(&data));
-	init_game_images(&data);
-	if (!validate_images(&data))
+	if (!init_game_images(&data))
 	{
 		close_button(&data);
 		return (1);
