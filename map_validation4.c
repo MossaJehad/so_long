@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 15:58:06 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 20:19:33 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,25 @@ void	check_and_set_pos(t_data *data, int i, int j)
 		data->exit_y = i;
 	}
 }
-int open_map_file(const char *filename)
+
+int	open_map_file(const char *filename)
 {
-    int fd;
-    
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-    {
-        ft_putstr_fd("Error: unable to open file\n", 2);
-        return (-1);
-    }
-    return (fd);
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error: unable to open file\n", 2);
+		return (-1);
+	}
+	return (fd);
 }
 
-void process_map_line(char **map, int *i, char *line)
+void	process_map_line(char **map, int *i, char *line)
 {
-    if (strlen(line) > 0 && line[strlen(line) - 1] == '\n')
-        line[strlen(line) - 1] = '\0';
-    map[*i] = strdup(line);
-    (*i)++;
-    free(line);
+	if (strlen(line) > 0 && line[strlen(line) - 1] == '\n')
+		line[strlen(line) - 1] = '\0';
+	map[*i] = strdup(line);
+	(*i)++;
+	free(line);
 }

@@ -18,6 +18,7 @@ SRC = so_long.c \
       map_validation2.c \
       map_validation3.c \
       map_validation4.c \
+	  map_validation5.c \
       player_movement.c
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 16:00:08 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 20:38:20 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,20 @@ int	count_lines(const char *filename)
 char	**load_map(const char *filename)
 {
 	int		fd;
-	char	*line;
-	int		i;
-	char	**map;
 	int		line_count;
+	char	**map;
 
-	i = 0;
 	line_count = count_lines(filename);
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (line_count < 0 || !map)
 		return (NULL);
 	fd = open_map_file(filename);
 	if (fd < 0)
-    {
+	{
 		free(map);
 		return (NULL);
-    }
-	line = get_next_line(fd);
-	while (line != NULL)
-    {
-        process_map_line(map, &i, line);
-        line = get_next_line(fd);
-    }
-	map[i] = NULL;
+	}
+	read_map_lines(fd, map);
 	close(fd);
 	return (map);
 }

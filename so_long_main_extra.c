@@ -69,13 +69,11 @@ void	initialize_game(t_data *data)
 int	handle_window_error(t_data *data)
 {
 	destroy_images(data);
-
 	if (data->mlx_win)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
 		data->mlx_win = NULL;
 	}
-
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -84,7 +82,6 @@ int	handle_window_error(t_data *data)
 	}
 	if (data->map)
 		free_map(data->map);
-	
 	write(2, "Error: Failed in mlx\n", 22);
 	return (1);
 }

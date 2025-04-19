@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:14:02 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 15:58:16 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 20:37:30 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	int		collectibles_collected;
 }				t_data;
 
+void	read_map_lines(int fd, char **map);
 char	*read_buffer(int fd, char *buffer, int *byte);
 char	*process_line(char *line, char *buffer);
 char	*get_next_line(int fd);
