@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 20:53:29 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:46:02 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ void	initialize_game(t_data *data)
 
 int	handle_window_error(t_data *data)
 {
+	destroy_images(data);
+
+	if (data->mlx_win)
+	{
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		data->mlx_win = NULL;
+	}
+
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -76,11 +84,7 @@ int	handle_window_error(t_data *data)
 	}
 	if (data->map)
 		free_map(data->map);
-	if (data->mlx_win)
-	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		data->mlx_win = NULL;
-	}
+	
 	write(2, "Error: Failed in mlx\n", 22);
 	return (1);
 }

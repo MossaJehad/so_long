@@ -1,5 +1,6 @@
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
+HEADERS = so_long.h
 
 NAME = so_long
 
@@ -29,7 +30,7 @@ ${LIBFT}:
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LDFLAGS) -L$(LIBFT_DIR) -lft
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

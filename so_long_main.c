@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:37 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 20:51:51 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:42:44 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,6 @@ void	find_player_position(t_data *data)
 	}
 }
 
-// int check_image(void *img, t_data *data)
-// {
-//     if (!img)
-//     {
-//         if (data->img_player)
-//             mlx_destroy_image(data->mlx, data->img_player);
-//         if (data->img_wall)
-//             mlx_destroy_image(data->mlx, data->img_wall);
-//         if (data->img_floor)
-//             mlx_destroy_image(data->mlx, data->img_floor);
-//         if (data->img_exit)
-//             mlx_destroy_image(data->mlx, data->img_exit);
-//         if (data->img_coin)
-//             mlx_destroy_image(data->mlx, data->img_coin);
-//         if (data->mlx_win)
-//             mlx_destroy_window(data->mlx, data->mlx_win);
-//         if (data->mlx)
-//         {
-//             mlx_destroy_display(data->mlx);
-//             free(data->mlx);
-//         }
-//         if (data->map)
-//             free_map(data->map);
-//         exit(1);
-//         return (0);
-//     }
-//     return (1);
-// }
-
 int	init_game_images(t_data *data)
 {
 	data->img_player = mlx_xpm_file_to_image(data->mlx, "assets/player.xpm",
@@ -72,19 +43,19 @@ int	init_game_images(t_data *data)
 		return (0);
 	data->img_wall = mlx_xpm_file_to_image(data->mlx, "assets/wall.xpm",
 			&data->img_width, &data->img_height);
-	if (!data->img_player)
+	if (!data->img_wall)
 		return (0);
 	data->img_floor = mlx_xpm_file_to_image(data->mlx, "assets/floor.xpm",
 			&data->img_width, &data->img_height);
-	if (!data->img_player)
+	if (!data->img_floor)
 		return (0);
 	data->img_exit = mlx_xpm_file_to_image(data->mlx, "assets/exit.xpm",
 			&data->img_width, &data->img_height);
-	if (!data->img_player)
+	if (!data->img_exit)
 		return (0);
 	data->img_coin = mlx_xpm_file_to_image(data->mlx, "assets/coin.xpm",
 			&data->img_width, &data->img_height);
-	if (!data->img_player)
+	if (!data->img_coin)
 		return (0);
 	return (1);
 }

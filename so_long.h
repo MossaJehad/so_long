@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:14:02 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 20:42:44 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:58:16 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
+int		open_map_file(const char *filename);
+void	process_map_line(char **map, int *i, char *line);
 char	**load_map(const char *filename);
 size_t	strlen(const char *s);
 void	display_move_count(t_data *data);

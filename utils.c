@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 18:37:59 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:00:08 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,18 @@ char	**load_map(const char *filename)
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (line_count < 0 || !map)
 		return (NULL);
-	fd = open(filename, O_RDONLY);
+	fd = open_map_file(filename);
+	if (fd < 0)
+    {
+		free(map);
+		return (NULL);
+    }
 	line = get_next_line(fd);
 	while (line != NULL)
-	{
-		if (strlen(line) > 0 && line[strlen(line) - 1] == '\n')
-			line[strlen(line) - 1] = '\0';
-		map[i++] = strdup(line);
-		free(line);
-		line = get_next_line(fd);
-	}
+    {
+        process_map_line(map, &i, line);
+        line = get_next_line(fd);
+    }
 	map[i] = NULL;
 	close(fd);
 	return (map);
