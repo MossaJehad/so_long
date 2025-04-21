@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:28 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 13:43:04 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:06:15 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	check_horizontal_walls(char **map, int width, int height)
 			&& i == (int)ft_strlen(map[0]) - 1) || map[0][i] != '1')
 			return (0);
 		if (i >= (int)ft_strlen(map[height - 1]) || (map[height - 1][i] == '\n'
-			&& i == (int)ft_strlen(map[height - 1]) - 1)
-			|| map[height - 1][i] != '1')
+			&& i == (int)ft_strlen(map[height - 1]) - 1) || map[height
+			- 1][i] != '1')
 			return (0);
 		i++;
 	}
@@ -112,6 +112,8 @@ int	has_valid_walls(char **map)
 	if (height == 0 || !map[0])
 		return (0);
 	width = ft_strlen(map[0]);
+	if (width <= 0)
+		return (0);
 	if (width > 0 && map[0][width - 1] == '\n')
 		width--;
 	if (!check_map_dimensions(map))

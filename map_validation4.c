@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 14:38:19 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:55:19 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	open_map_file(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error\nunable to open file\n", 2);
+		ft_putstr_fd("Error\nUnable to open file\n", 2);
 		return (-1);
 	}
 	return (fd);
@@ -94,11 +94,20 @@ int	open_map_file(const char *filename)
 
 void	process_map_line(char **map, int *i, char *line)
 {
+	int	j;
+
 	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	map[*i] = ft_strdup(line);
 	if (!map[*i])
-		exit(1);
+	{
+		j = 0;
+		while (j < *i)
+		{
+			free(map[j]);
+			j++;
+		}
+	}
 	(*i)++;
 	free(line);
 }

@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 14:39:02 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:59:48 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	setup_window(t_data *data)
 		return (0);
 	data->img_width = 64;
 	data->img_height = 64;
+	if (!map_width || !map_height || !data->img_width || !data->img_height)
+		return (0);
 	data->mlx_win = mlx_new_window(data->mlx, map_width * data->img_width,
 			map_height * data->img_height, "So Long");
 	if (data->mlx_win == NULL)
