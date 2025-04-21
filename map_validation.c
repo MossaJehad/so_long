@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:28 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 20:19:09 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:43:04 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	is_rectangular(char **map)
 
 	if (!map || !map[0])
 		return (0);
-	len = strlen(map[0]);
+	len = ft_strlen(map[0]);
 	if (len > 0 && map[0][len - 1] == '\n')
 		len--;
 	i = 1;
 	while (map[i])
 	{
-		line_len = strlen(map[i]);
+		line_len = ft_strlen(map[i]);
 		if (line_len > 0 && map[i][line_len - 1] == '\n')
 		{
 			line_len--;
@@ -50,7 +50,7 @@ int	check_map_dimensions(char **map)
 		return (0);
 	if (!map[0])
 		return (0);
-	width = strlen(map[0]);
+	width = ft_strlen(map[0]);
 	if (width > 0 && map[0][width - 1] == '\n')
 		width--;
 	if (width < 3)
@@ -63,17 +63,17 @@ int	check_horizontal_walls(char **map, int width, int height)
 	int	i;
 	int	map_width;
 
-	map_width = strlen(map[0]);
+	map_width = ft_strlen(map[0]);
 	if (map_width > 0 && map[0][map_width - 1] == '\n')
 		map_width--;
 	i = 0;
 	while (i < width)
 	{
-		if (i >= (int)strlen(map[0]) || (map[0][i] == '\n'
-			&& i == (int)strlen(map[0]) - 1) || map[0][i] != '1')
+		if (i >= (int)ft_strlen(map[0]) || (map[0][i] == '\n'
+			&& i == (int)ft_strlen(map[0]) - 1) || map[0][i] != '1')
 			return (0);
-		if (i >= (int)strlen(map[height - 1]) || (map[height - 1][i] == '\n'
-			&& i == (int)strlen(map[height - 1]) - 1)
+		if (i >= (int)ft_strlen(map[height - 1]) || (map[height - 1][i] == '\n'
+			&& i == (int)ft_strlen(map[height - 1]) - 1)
 			|| map[height - 1][i] != '1')
 			return (0);
 		i++;
@@ -89,7 +89,7 @@ int	check_vertical_walls(char **map, int width, int height)
 	j = 0;
 	while (j < height)
 	{
-		current_line_len = strlen(map[j]);
+		current_line_len = ft_strlen(map[j]);
 		if (current_line_len > 0 && map[j][current_line_len - 1] == '\n')
 			current_line_len--;
 		if (map[j][0] != '1')
@@ -111,7 +111,7 @@ int	has_valid_walls(char **map)
 		height++;
 	if (height == 0 || !map[0])
 		return (0);
-	width = strlen(map[0]);
+	width = ft_strlen(map[0]);
 	if (width > 0 && map[0][width - 1] == '\n')
 		width--;
 	if (!check_map_dimensions(map))

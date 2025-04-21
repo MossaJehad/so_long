@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:14:02 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 20:37:30 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:40:46 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		open_map_file(const char *filename);
 void	process_map_line(char **map, int *i, char *line);
 char	**load_map(const char *filename);
-size_t	strlen(const char *s);
 void	display_move_count(t_data *data);
 void	render_map(t_data *data);
 int		count_lines(const char *filename);
@@ -122,5 +121,6 @@ char	*rbuff(int fd, char *line);
 char	*cleaner(char *line);
 void	check_name(char *name);
 void	make_data(t_data *data);
+void	ft_free_so(char	**ptr);
 
 #endif

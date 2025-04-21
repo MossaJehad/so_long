@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 15:46:02 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:39:02 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	setup_map(t_data *data, char *map_path)
 	data->map = load_map(map_path);
 	if (!data->map)
 	{
-		write(2, "Error: Failed to load map\n", 25);
+		write(2, "Error\nFailed to load map\n", 29);
 		return (0);
 	}
 	if (!validate_map(data->map))
@@ -44,7 +44,7 @@ int	setup_window(t_data *data)
 		map_height++;
 	map_width = 0;
 	if (data->map[0])
-		map_width = strlen(data->map[0]);
+		map_width = ft_strlen(data->map[0]);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (0);
@@ -82,7 +82,7 @@ int	handle_window_error(t_data *data)
 	}
 	if (data->map)
 		free_map(data->map);
-	write(2, "Error: Failed in mlx\n", 22);
+	write(2, "Error\nFailed in mlx\n", 24);
 	return (1);
 }
 
@@ -90,12 +90,12 @@ int	main(int ac, char *av[])
 {
 	t_data	data;
 
-	make_data(&data);
 	if (ac != 2 || !av[1])
 	{
-		write(2, "Error please choose a map\n", 26);
+		write(2, "Error\nPlease choose a map\n", 29);
 		return (0);
 	}
+	make_data(&data);
 	check_name(av[1]);
 	if (!setup_map(&data, av[1]))
 		return (1);

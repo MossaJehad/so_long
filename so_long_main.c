@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:37 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 15:42:44 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:51:10 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	validate_images(t_data *data)
 	if (!data->img_player || !data->img_wall || !data->img_floor
 		|| !data->img_exit || !data->img_coin)
 	{
-		write(2, "Error: Failed to load images\n", 29);
+		write(2, "Error\nFailed to load images\n", 32);
 		if (data->img_player)
 			mlx_destroy_image(data->mlx, data->img_player);
 		if (data->img_wall)
@@ -112,7 +112,7 @@ void	check_name(char *name)
 
 	if (ft_strlen(name) < 4)
 	{
-		write(2, "Error\nmap must name .ber\n", 25);
+		write(2, "Error\n\nMap must name .ber\n", 29);
 		exit(1);
 	}
 	i = 0;
@@ -124,7 +124,7 @@ void	check_name(char *name)
 	{
 		if (ber[j--] != name[--i])
 		{
-			write(2, "Error\nmap must be name .ber\n", 28);
+			write(2, "Error\n\nMap must be name .ber\n", 32);
 			exit(1);
 		}
 	}

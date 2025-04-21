@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:25 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/10 18:27:34 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:31:22 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*process_line(char *line, char *buffer)
 	if (!line)
 		return (ft_strdup(buffer));
 	temp = ft_strjoin(line, buffer);
+	if (!temp)
+		return (NULL);
 	free(line);
 	return (temp);
 }

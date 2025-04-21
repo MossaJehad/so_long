@@ -42,7 +42,7 @@ char	**create_map_copy(char **map)
 	i = 0;
 	while (map[i])
 	{
-		map_copy[i] = strdup(map[i]);
+		map_copy[i] = ft_strdup(map[i]);
 		if (!map_copy[i])
 		{
 			while (i > 0)

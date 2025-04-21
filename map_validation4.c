@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 20:19:33 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:38:19 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ int	validate_map(char **map)
 		return (0);
 	if (!is_rectangular(map))
 	{
-		write(2, "Error: Map is not complete!\n", 28);
+		write(2, "Error\nMap is not complete!\n", 31);
 		return (0);
 	}
 	if (!has_valid_walls(map))
 	{
-		write(2, "Error: Map is not surrounded by walls\n", 38);
+		write(2, "Error\nMap is not surrounded by walls\n", 41);
 		return (0);
 	}
 	if (!has_valid_elements(map, &count))
 	{
-		write(2, "Error: Map has invalid elements\n", 32);
+		write(2, "Error\nMap has invalid elements\n", 35);
 		return (0);
 	}
 	if (!is_path_valid(map, &count))
 	{
-		write(2, "Error: Not all collectibles or exit are reachable\n", 50);
+		write(2, "Error\nNot all collectibles or exit are reachable\n", 53);
 		return (0);
 	}
 	return (1);
@@ -86,7 +86,7 @@ int	open_map_file(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error: unable to open file\n", 2);
+		ft_putstr_fd("Error\nunable to open file\n", 2);
 		return (-1);
 	}
 	return (fd);
@@ -94,9 +94,11 @@ int	open_map_file(const char *filename)
 
 void	process_map_line(char **map, int *i, char *line)
 {
-	if (strlen(line) > 0 && line[strlen(line) - 1] == '\n')
-		line[strlen(line) - 1] = '\0';
-	map[*i] = strdup(line);
+	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	map[*i] = ft_strdup(line);
+	if (!map[*i])
+		exit(1);
 	(*i)++;
 	free(line);
 }

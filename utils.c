@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 20:38:20 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:40:22 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	count_lines(const char *filename)
 
 	line_count = 0;
 	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 	{
-		ft_putstr_fd("Error: unable to open file\n", 2);
+		ft_putstr_fd("Error\nUnable to open file\n", 2);
 		exit(1);
 	}
-	if (fd < 0)
-		return (-1);
 	line = get_next_line(fd);
+	if (!line)
+		ft_free_so(&line);
 	while (line != NULL)
 	{
 		line_count++;
@@ -46,7 +46,7 @@ char	**load_map(const char *filename)
 
 	line_count = count_lines(filename);
 	map = malloc(sizeof(char *) * (line_count + 1));
-	if (line_count < 0 || !map)
+	if (!map)
 		return (NULL);
 	fd = open_map_file(filename);
 	if (fd < 0)
@@ -67,7 +67,7 @@ void	display_move_count(t_data *data)
 	if (count_str)
 	{
 		write(1, "Move count: ", 12);
-		write(1, count_str, strlen(count_str));
+		write(1, count_str, ft_strlen(count_str));
 		write(1, "\n", 1);
 		free(count_str);
 	}

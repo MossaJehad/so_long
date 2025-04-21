@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:36:34 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/19 20:37:55 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:39:20 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ void	read_map_lines(int fd, char **map)
 		line = get_next_line(fd);
 	}
 	map[i] = NULL;
+}
+
+void	ft_free_so(char **ptr)
+{
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+	exit(0);
 }
