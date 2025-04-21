@@ -47,8 +47,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		reslen = ft_strlen(src) + 1;
 	else
 		reslen = len + 1;
-	if(!reslen)
-		return 0;
+	if (!reslen)
+		return (0);
 	res = malloc(reslen * sizeof(char));
 	if (!res)
 		return (NULL);

@@ -45,8 +45,8 @@ char	**load_map(const char *filename)
 	char	**map;
 
 	line_count = count_lines(filename);
-	if(!line_count)
-		return 0;
+	if (!line_count)
+		return (0);
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (!map)
 		return (NULL);
