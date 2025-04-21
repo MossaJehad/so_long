@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 13:47:42 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:22:08 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_exit_count(t_map_count *count)
 {
 	if (count->exit != 1)
 	{
-		write(2, "Error\nonly 1 exit should be exist\n", 38);
+		write(2, "Error\nOnly 1 exit should be exist\n", 38);
 		return (0);
 	}
 	return (1);
