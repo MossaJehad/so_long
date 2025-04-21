@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:20 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 16:20:32 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:34:04 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		reslen = ft_strlen(src) + 1;
 	else
 		reslen = len + 1;
+	if(!reslen)
+		return 0;
 	res = malloc(reslen * sizeof(char));
 	if (!res)
 		return (NULL);

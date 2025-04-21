@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:04:01 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:48:42 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	**load_map(const char *filename)
 	char	**map;
 
 	line_count = count_lines(filename);
+	if(!line_count)
+		return 0;
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (!map)
 		return (NULL);
