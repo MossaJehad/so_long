@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:25 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:37:33 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:31:14 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	static char	*line = NULL;
 	char		*buf;
 
-	if (fd < 0)
+	if (fd == -1)
 		return (NULL);
 	if ((line && !ft_strchr(line, '\n')) || !line)
 		line = rbuff(fd, line);

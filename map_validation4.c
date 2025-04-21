@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:40:43 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:31:02 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	open_map_file(const char *filename)
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if (fd == -1)
 	{
 		ft_putstr_fd("Error\nUnable to open file\n", 2);
 		return (-1);

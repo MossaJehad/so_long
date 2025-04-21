@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:48:42 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:31:23 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_lines(const char *filename)
 
 	line_count = 0;
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if (fd == -1)
 	{
 		ft_putstr_fd("Error\nUnable to open file\n", 2);
 		exit(1);
@@ -51,7 +51,7 @@ char	**load_map(const char *filename)
 	if (!map)
 		return (NULL);
 	fd = open_map_file(filename);
-	if (fd < 0)
+	if (fd == -1)
 	{
 		free(map);
 		return (NULL);
