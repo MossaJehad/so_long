@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:43 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 20:31:23 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:47:00 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	count_lines(const char *filename)
 		ft_putstr_fd("Error\nUnable to open file\n", 2);
 		exit(1);
 	}
+	if(fd == 0)
+		return 0;
 	line = get_next_line(fd);
 	if (!line)
 		ft_free_so(&line);
