@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:43:59 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:49:55 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	setup_map(t_data *data, char *map_path)
 	data->map = load_map(map_path);
 	if (!data->map)
 	{
-		write(2, "Error\nFailed to load map\n", 29);
+		write(2, "Error\nFailed to load map\n", 27);
 		return (0);
 	}
 	if (!validate_map(data->map))
@@ -84,7 +84,7 @@ int	handle_window_error(t_data *data)
 	}
 	if (data->map)
 		free_map(data->map);
-	write(2, "Error\nFailed in mlx\n", 24);
+	write(2, "Error\nFailed in mlx\n", 22);
 	return (1);
 }
 
@@ -94,7 +94,7 @@ int	main(int ac, char *av[])
 
 	if (ac != 2 || !av[1])
 	{
-		write(2, "Error\nPlease choose a map\n", 29);
+		write(2, "Error\nPlease choose a map\n", 28);
 		return (0);
 	}
 	make_data(&data);

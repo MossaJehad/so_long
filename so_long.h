@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:14:02 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 14:40:46 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:55:56 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	read_map_lines(int fd, char **map);
 char	*read_buffer(int fd, char *buffer, int *byte);
 char	*process_line(char *line, char *buffer);
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(char *str, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);

@@ -6,90 +6,114 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:25 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 20:31:14 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:51:36 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*nbuff(char *line)
+static char	*ft_read_save(int fd, char *save)
 {
-	char	*buf;
-	char	*ptr;
-	int		len;
-
-	ptr = ft_strchr(line, '\n');
-	len = (ptr - line) + 1;
-	buf = ft_substr(line, 0, len);
-	if (!buf)
-		return (NULL);
-	return (buf);
-}
-
-char	*read_buffer(int fd, char *buffer, int *byte)
-{
-	*byte = read(fd, buffer, BUFFER_SIZE);
-	if (*byte <= 0)
-		return (NULL);
-	buffer[*byte] = '\0';
-	return (buffer);
-}
-
-char	*process_line(char *line, char *buffer)
-{
-	char	*temp;
-
-	if (!line)
-		return (ft_strdup(buffer));
-	temp = ft_strjoin(line, buffer);
-	if (!temp)
-		return (NULL);
-	free(line);
-	return (temp);
-}
-
-char	*rbuff(int fd, char *line)
-{
-	int		byte;
 	char	*buffer;
+	int		byte_read;
 
-	byte = 1;
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (NULL);
-	while (byte > 0)
 	{
-		byte = read(fd, buffer, BUFFER_SIZE);
-		if (byte <= 0)
-			break ;
-		buffer[byte] = '\0';
-		line = process_line(line, buffer);
-		if (!line || ft_strchr(buffer, '\n'))
-			break ;
+		free(save);
+		return (NULL);
+	}
+	byte_read = 1;
+	while (!ft_strchr(save, '\n') && byte_read != 0)
+	{
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (byte_read == -1)
+		{
+			free(buffer);
+			free(save);
+			return (NULL);
+		}
+		buffer[byte_read] = '\0';
+		save = ft_strjoin(save, buffer);
 	}
 	free(buffer);
-	if (byte < 0)
+	return (save);
+}
+
+static char	*ft_line(char *save)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (save[i] && save[i] != '\n')
+		i++;
+	str = (char *)malloc(i + 2);
+	if (!str)
+	{
+		free(save);
+		return (NULL);
+	}
+	i = 0;
+	while (save[i] && save[i] != '\n')
+	{
+		str[i] = save[i];
+		i++;
+	}
+	if (save[i] == '\n')
+	{
+		str[i] = save[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+static char	*ft_save(char *save)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	while (save[i] && save[i] != '\n')
+		i++;
+	if (!save[i])
+	{
+		free(save);
+		return (NULL);
+	}
+	str = (char *)malloc(ft_strlen(save) - i + 1);
+	if (!str)
+	{
+		free(save);
+		return (NULL);
+	}
+	i++;
+	j = 0;
+	while (save[i] != '\0')
+		str[j++] = save[i++];
+	str[j] = '\0';
+	free(save);
+	return (str);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*save;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	save = ft_read_save(fd, save);
+	if (!save)
+		return (NULL);
+	line = ft_line(save);
+	save = ft_save(save);
+	if (!line[0])
 	{
 		free(line);
 		return (NULL);
 	}
 	return (line);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*line = NULL;
-	char		*buf;
-
-	if (fd == -1)
-		return (NULL);
-	if ((line && !ft_strchr(line, '\n')) || !line)
-		line = rbuff(fd, line);
-	if (!line)
-		return (NULL);
-	buf = nbuff(line);
-	if (!buf)
-		return (ft_free(&line));
-	line = cleaner(line);
-	return (buf);
 }

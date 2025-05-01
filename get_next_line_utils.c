@@ -6,93 +6,51 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:20 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:34:04 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:54:32 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *str, int c)
 {
-	while (*s != (unsigned char)c)
-		if (!*s++)
-			return (NULL);
-	return ((char *)s);
+	if (!str)
+		return (NULL);
+	if (c == '\0')
+		return ((char *)str);
+	while (*str)
+	{
+		if (*str == (unsigned char)c)
+			return ((char *)str);
+		str++;
+	}
+	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*res;
-	char	*src;
-	size_t	reslen;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < (size_t)start)
-		return (NULL);
-	src = (char *)s + start;
-	if (ft_strlen(src) < len)
-		reslen = ft_strlen(src) + 1;
-	else
-		reslen = len + 1;
-	if (!reslen)
-		return (0);
-	res = malloc(reslen * sizeof(char));
-	if (!res)
-		return (NULL);
-	ft_strlcpy(res, src, reslen);
-	return (res);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	while (src[i] != '\0' && i < size - 1)
+	if (!s1)
 	{
-		dst[i] = src[i];
-		i++;
+		s1 = (char *)malloc(1);
+		s1[0] = '\0';
 	}
-	dst[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*cleaner(char *line)
-{
-	char	*new_line;
-	char	*ptr;
-	int		len;
-
-	ptr = ft_strchr(line, '\n');
-	if (!ptr)
-	{
-		new_line = NULL;
-		return (ft_free(&line));
-	}
-	else
-		len = (ptr - line) + 1;
-	if (!line[len])
-		return (ft_free(&line));
-	new_line = ft_substr(line, len, ft_strlen(line) - len);
-	ft_free(&line);
-	if (!new_line)
+	if (!s1 || !s2)
 		return (NULL);
-	return (new_line);
+	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+	while (s2[j] != '\0')
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:00:00 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:08 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:48:47 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_player_count(t_map_count *count)
 {
 	if (count->player != 1)
 	{
-		write(2, "Error\nMap must contain exactly one player 'P'\n", 50);
+		write(2, "Error\nMap must contain exactly one player 'P'\n", 84);
 		return (0);
 	}
 	return (1);
@@ -55,7 +55,7 @@ int	check_exit_count(t_map_count *count)
 {
 	if (count->exit != 1)
 	{
-		write(2, "Error\nOnly 1 exit should be exist\n", 38);
+		write(2, "Error\nOnly 1 exit should be exist\n", 36);
 		return (0);
 	}
 	return (1);
@@ -65,7 +65,7 @@ int	check_collectible_count(t_map_count *count)
 {
 	if (count->collectible < 1)
 	{
-		write(2, "Error\nMap must contain at least one collectible 'C'\n", 56);
+		write(2, "Error\nMap must contain at least one collectible 'C'\n", 54);
 		return (0);
 	}
 	return (1);

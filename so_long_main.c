@@ -6,7 +6,7 @@
 /*   By: mhasoneh <mhasoneh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:31:37 by mhasoneh          #+#    #+#             */
-/*   Updated: 2025/04/21 13:51:10 by mhasoneh         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:50:07 by mhasoneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	validate_images(t_data *data)
 	if (!data->img_player || !data->img_wall || !data->img_floor
 		|| !data->img_exit || !data->img_coin)
 	{
-		write(2, "Error\nFailed to load images\n", 32);
+		write(2, "Error\nFailed to load images\n", 30);
 		if (data->img_player)
 			mlx_destroy_image(data->mlx, data->img_player);
 		if (data->img_wall)
